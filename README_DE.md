@@ -10,28 +10,31 @@ für einen Sketch zu verwenden.
 
 ## Installation
 
-Voraussetzungen: eine Webcam und ein laufender DeepFace-Server, der vom
-eigenen Computer aus erreichbar ist. Der Sketch ist für den kleinen
-Flask-Server `deepface` in
-[Servers_RaspberriPi](https://github.com/ZHdK-Critical-Coding/Servers_RaspberriPi)
-gemacht (`deepface_server.py`, Port 7777): Er bietet `POST /analyze` an,
-erwartet den Body `{ "image": "<base64 jpeg>" }` und erlaubt
-Cross-Origin-Anfragen (CORS). Die offizielle DeepFace-API (`img` /
-`img_path`) verwendet ein anderes Format und funktioniert nicht ohne
-Anpassungen.
-
-`serverURL` oben in `sketch.js` auf den eigenen Server setzen (Standard
-`http://10.21.4.117:7777/analyze`).
+Voraussetzungen: eine Webcam.
 
 Bibliotheken (in `libraries/`): p5.js 1.10.0, p5.sound 1.0.1 (eingebunden,
 nicht verwendet).
 
+## Server
+
+Braucht `deepface` aus
+[Servers_RaspberriPi](https://github.com/ZHdK-Critical-Coding/Servers_RaspberriPi)
+(HTTP, Port 7777), auf einem Raspberry Pi im selben Netzwerk wie dein
+Computer. Zuerst im Ordner mit `python deepface_server.py` starten (oder
+`bash run_server.sh`, das ihn nach einem Absturz neu startet). Er bietet
+`POST /analyze` an, nimmt `{ "image": "<base64 jpeg>" }` entgegen und
+liefert Alter, Geschlecht, Herkunft und Emotion als JSON (mit CORS). Die
+offizielle DeepFace-API verwendet ein anderes Format. In `sketch.js`
+`serverURL` auf seine Adresse setzen (Standard
+`http://10.21.4.117:7777/analyze`).
+
 ## Ausführen
 
-1. Den Ordner in Visual Studio Code öffnen und Live Server starten (in der
+1. Sicherstellen, dass der DeepFace-Server läuft (siehe Server).
+2. Den Ordner in Visual Studio Code öffnen und Live Server starten (in der
    Statusleiste auf **Go Live** klicken).
-2. Den Zugriff auf die Webcam erlauben.
-3. **Leertaste** drücken, um ein Bild zur Analyse zu schicken. Während auf
+3. Den Zugriff auf die Webcam erlauben.
+4. **Leertaste** drücken, um ein Bild zur Analyse zu schicken. Während auf
    die Antwort gewartet wird, erscheint ein roter Punkt.
 
 ## Coding-Hilfe
