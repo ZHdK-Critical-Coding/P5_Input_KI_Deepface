@@ -10,20 +10,26 @@ point for using face analysis on a server as input for a sketch.
 ## Installation
 
 Requirements: a webcam, and a running DeepFace server that is reachable from
-your computer and exposes `POST /analyze`. The sketch sends the body
-`{ "image": "<base64 jpeg>" }` – the server has to accept this format and
-allow cross-origin requests (CORS).
+your computer. The sketch is made for the small Flask server `deepface` in
+[Servers_RaspberriPi](https://github.com/ZHdK-Critical-Coding/Servers_RaspberriPi)
+(`deepface_server.py`, port 7777): it exposes `POST /analyze`, expects the
+body `{ "image": "<base64 jpeg>" }` and allows cross-origin requests (CORS).
+The official DeepFace API (`img` / `img_path`) uses a different format and
+does not work without changes.
 
-1. Set `serverURL` at the top of `sketch.js` to your server (default
-   `http://10.21.4.117:7777/analyze`).
-2. Open the folder in Visual Studio Code and start Live Server (click
-   **Go Live** in the status bar).
-3. Allow webcam access.
-4. Press **Space** to send a frame for analysis. A red dot is shown while
-   waiting for the answer.
+Set `serverURL` at the top of `sketch.js` to your server (default
+`http://10.21.4.117:7777/analyze`).
 
 Libraries (in `libraries/`): p5.js 1.10.0, p5.sound 1.0.1 (included, not
 used).
+
+## How to Run
+
+1. Open the folder in Visual Studio Code and start Live Server (click
+   **Go Live** in the status bar).
+2. Allow webcam access.
+3. Press **Space** to send a frame for analysis. A red dot is shown while
+   waiting for the answer.
 
 ## Coding Help
 
